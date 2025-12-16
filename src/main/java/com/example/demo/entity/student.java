@@ -3,5 +3,7 @@ public class student{
     private String name;
     private String email;
     private String cgpa;
-    
+
+    public 
+
 }
