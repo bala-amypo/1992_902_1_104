@@ -47,11 +47,19 @@ public class EligibilityCheckRecord{
     public LocalDateTime getCheckedAt(){
         return checkedAt;
     }
-    public void setcheckedAt
+    public void setCheckedAt(LocalDateTime checkedAt){
+        this.checkedAt=checkedAt;
+    }
     public EligibilityCheckRecord(){
        
     }
-    public EligibilityCheckRecord(Long id,Long employeeId,Long deviceItemId,Boolean isEligible,String reason){
+    public EligibilityCheckRecord(Long id,Long employeeId,Long deviceItemId,Boolean isEligible,String reason,LocalDateTime checkedAt){
+        this.id=id;
+        this.employeeId=employeeId;
+        this.deviceItemId=deviceItemId;
+        this.isEligible=isEligible;
+        this.reason=reason;
+        this.checkedAt=checkedAt;
        
     }
 
