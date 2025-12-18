@@ -14,6 +14,36 @@ public class PolicyRule{
     private Integer maxDevicesAllowed;
     private Boolean active;
 
-    public 
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
+    public String getRuleCode(){
+        return ruleCode;
+
+    }
+    public void set(){
+
+    }
+     public String get(){
+
+    }
+    public void set(){
+        
+    }
+     public String get(){
+
+    }
+    public void set(){
+        
+    }
+     public String get(){
+
+    }
+    public void set(){
+        
+    }
     
 }
