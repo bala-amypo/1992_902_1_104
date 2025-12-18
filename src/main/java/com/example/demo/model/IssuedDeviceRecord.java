@@ -46,6 +46,17 @@ public class IssuedDeviceRecord{
         this.returnedDate=returnedDate;
     }
     public String getStatus(){
-        return st
+        return status;
+    }
+    public void setStatus(String status){
+        this.status=status;
+    }
+    public IssuedDeviceRecord(){
+
+    }
+    public IssuedDeviceRecord(Long id,Long employeeId,Long deviceItemId,LocalDateTime issuedDate,LocalDateTime returnedDate,String status){
+        this.id=id;
+        this.employeeId=employeeId;
+
     }
 }
