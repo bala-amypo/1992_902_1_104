@@ -1,12 +1,12 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.Time.LocalDateTime;
+import java.time.LocalDateTime;
 
-#Entity
+@Entity
 public class EligibilityCheckRecord{
     @Id
-    @GeneratedValue(strategy=GenerationType.Entity)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Long employeeId;
     private Long deviceItemId;

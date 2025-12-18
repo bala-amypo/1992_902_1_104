@@ -49,10 +49,10 @@ public class DeviceCatalogItem{
     public void setActive(Boolean active){
         this.active=active;
     }
-    public DeviceCatlogItem(){
+    public DeviceCatalogItem(){
 
     }
-    public DeviceCatlogItem(Long id,String deviceCode,String deviceType,String model,Integer maxAllowedEmployee,Boolean active){
+    public DeviceCatalogItem(Long id,String deviceCode,String deviceType,String model,Integer maxAllowedEmployee,Boolean active){
         this.id=id;
         this.deviceCode=deviceCode;
         this.deviceType=deviceType;
@@ -61,6 +61,7 @@ public class DeviceCatalogItem{
         this.active=active;
         
     }
+    
 
 
 }
