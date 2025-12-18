@@ -21,5 +21,23 @@ public class EmployeeProfile{
     public String getEmployeeId(){
         return employeeId;
     }
-    
+    public void setEmployeeId(String employeeId){
+        this.employeeId=employeeId;
+    }
+    public String getJobRole(){
+        return jobRole;
+    }
+    public void setJobRole(String jobRole){
+        this.jobRole=jobRole;
+    }
+    public Boolean getActive(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+    public LocalDateTime getCeatedAt(){
+        return createdAt;
+    }
+    public void
 }
