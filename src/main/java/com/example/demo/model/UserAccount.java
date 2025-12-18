@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 @Entity
 public class UserAccount{
     @Id
-    @GeneratedValue(s)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    private String fullName;
+    private String email;
+    private String passwordHash;
+    private String role;
+    private Boolean active;
     
 }
