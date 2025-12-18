@@ -1,3 +1,3 @@
-public class DeviceCatlogService{
+public class DeviceCatalogService{
     
 }
