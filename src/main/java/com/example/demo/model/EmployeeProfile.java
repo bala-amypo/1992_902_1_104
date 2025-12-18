@@ -1,6 +1,6 @@
 package com.example.demo.model;
 import jakarta.persistence.*;
-import java.time.localDateTime;
+import java.time.LocalDateTime;
 
 @Entity
 public class EmployeeProfile{
@@ -36,7 +36,7 @@ public class EmployeeProfile{
     public void setActive(Boolean active){
         this.active=active;
     }
-    public LocalDateTime getCeatedAt(){
+    public LocalDateTime getCreatedAt(){
         return createdAt;
     }
     public void setCreatedAt(LocalDateTime createdAt){
