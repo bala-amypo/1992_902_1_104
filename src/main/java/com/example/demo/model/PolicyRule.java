@@ -24,19 +24,25 @@ public class PolicyRule{
         return ruleCode;
 
     }
-    public void set(){
+    public void setRuleCode(String ruleCode){
+        this.ruleCode=ruleCode;
 
     }
-     public String get(){
+     public String getDescription(){
+        return description;
 
     }
-    public void set(){
+    public void setDescription(String description){
+        this.description=description;
         
     }
-     public String get(){
+     public String getAppliesToRole(){
+        return appliesToRole;
 
     }
-    public void set(){
+    public void setAppliesToRole(String appliesToRole){
+        this.appliesToRole=appliesToRole;
+
         
     }
      public String get(){
