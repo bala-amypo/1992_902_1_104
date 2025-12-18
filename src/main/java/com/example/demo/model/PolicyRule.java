@@ -45,11 +45,19 @@ public class PolicyRule{
 
         
     }
-     public String get(){
+     public String getAppliesToDepartment(){
+        return appliesToDepartment;
 
     }
-    public void set(){
-        
+    public void setAppliesToDepartment(String appliesToDepartment){
+        this.appliesToDepartment=appliesToDepartment;
     }
+    public Integer getMaxDevicesAllowed(){
+        return maxDevicesAllowed;
+    }
+    public void setMaxDevicesAllowed(Integer maxDevicesAllowed){
+        this.maxDevicesAllowed=maxDevicesAllowed;
+    }
+    public Boolean getA
     
 }
