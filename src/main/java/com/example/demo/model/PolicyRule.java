@@ -11,6 +11,7 @@ public class PolicyRule{
     private String description;
     private String appliesToRole;
     private String appliesToDepartment;
-    private 
+    private Integer maxDevicesAllowed;
+    private Boolean active;
     
 }

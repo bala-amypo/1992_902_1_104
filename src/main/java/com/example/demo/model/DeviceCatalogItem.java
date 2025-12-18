@@ -9,7 +9,7 @@ public class DeviceCatalogItem{
     private String deviceCode;
     private String deviceType;
     private String model;
-    private int maxAllowedEmployee;
+    private Integer maxAllowedEmployee;
     private Boolean active;
-    
+
 }
