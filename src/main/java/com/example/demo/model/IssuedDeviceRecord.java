@@ -8,6 +8,8 @@ public class IssuedDeviceRecord{
     private Long id;
     private Long employeeId;
     private Long deviceItemId;
-    
+    private LocalDate issuedDate;
+    private LocalDate returnedDate;
+    private String status;
     
 }
