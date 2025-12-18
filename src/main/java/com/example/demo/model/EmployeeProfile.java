@@ -5,6 +5,9 @@ import java.time.localDateTime;
 @Entity
 public class EmployeeProfile{
     private Long id;
-    private String
+    private String employeeId;
+    private String jobRole;
+    private Boolean active;
+    private LocalDateTime createdAt;
     
 }
