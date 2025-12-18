@@ -17,21 +17,25 @@ public class EligibilityCheckRecord{
     public Long getId(){
         return id;
     }
-    pblic void setI(Long ){
-        this.
+    public void setId(Long id){
+        this.id=id;
     }
-    public Long get(){
-        return 
+    public Long getEmployeeId(){
+        return employeeId;
     }
-    pblic void set(Long ){
-        this.
+    public void setEmployeeId(Long employeeId){
+        this.employeeId=employeeId;
     }
-    public Long get(){
-        return 
+    public Long getDeviceItemId(){
+        return deviceItemId;
     }
-    pblic void set(Long ){
-        this.
+    public void setDeviceItemId(Long deviceItemId){
+        this.deviceItemId=deviceItemId;
     }
+    public Boolean getIsEligible(){
+        return isEligible;
+    }
+    
 
 
 
