@@ -57,6 +57,10 @@ public class IssuedDeviceRecord{
     public IssuedDeviceRecord(Long id,Long employeeId,Long deviceItemId,LocalDateTime issuedDate,LocalDateTime returnedDate,String status){
         this.id=id;
         this.employeeId=employeeId;
+        this.deviceItemId=deviceItemId;
+        this.issuedDate=issuedDate;
+        this.returnedDate=returnedDate;
+        this.status=status;
 
     }
 }
