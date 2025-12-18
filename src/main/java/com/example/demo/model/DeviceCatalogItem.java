@@ -36,7 +36,25 @@ public class DeviceCatalogItem{
     public void setModel(String ){
         this.model=model;
     }
-    public Integer getMaxAllowedEmployee
+    public Integer getMaxAllowedEmployee(){
+        return maxAllowedEmployee;
+    }
+    public void setMaxAllowedEmployee(Integer maxAllowedEmployee){
+        this.maxAllowedEmployee=maxAllowedEmployee;
+
+    }
+    public Boolean getActive(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+    public DeviceCatlogItem(){
+
+    }
+    public DeviceCatlogItem(Long id,){
+        
+    }
 
 
 }
