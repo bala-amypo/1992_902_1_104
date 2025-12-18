@@ -35,7 +35,7 @@ public class EligibilityCheckRecord{
     public Boolean getIsEligible(){
         return isEligible;
     }
-    public void setIsEligible(String isEligible){
+    public void setIsEligible(Boolean isEligible){
         this.isEligible=isEligible;
     }
     public String getReason(){
@@ -44,7 +44,16 @@ public class EligibilityCheckRecord{
     public void setReason(String reason){
         this.reason=reason;
     }
-    public 
+    public LocalDateTime getCheckedAt(){
+        return checkedAt;
+    }
+    public void setcheckedAt
+    public EligibilityCheckRecord(){
+       
+    }
+    public EligibilityCheckRecord(Long id,Long employeeId,Long deviceItemId,Boolean isEligible,String reason){
+       
+    }
 
 
 
