@@ -1,3 +1,13 @@
+package com.example.demo.model.*;
+import jakarta.persistence.*;
+
+@Entity
 public class IssuedDeviceRecord{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    private Long employeeId;
+    private Long deviceItemId;
+    
     
 }

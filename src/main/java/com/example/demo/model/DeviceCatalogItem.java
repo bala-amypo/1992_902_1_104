@@ -8,5 +8,8 @@ public class DeviceCatalogItem{
     private Long id;
     private String deviceCode;
     private String deviceType;
-    private 
+    private String model;
+    private int maxAllowedEmployee;
+    private Boolean active;
+    
 }
