@@ -4,6 +4,8 @@ import java.time.localDateTime;
 
 @Entity
 public class EmployeeProfile{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String employeeId;
     private String jobRole;
