@@ -48,6 +48,9 @@ public class EmployeeProfile{
     public EmployeeProfile(Long id,String employeeId,String jobRole,Boolean active,LocalDateTime createdAt){
         this.id=id;
         this.employeeId=employeeId;
+        this.jobRole=jobRole;
+        this.active=active;
+        this.createdAt=createdAt;
 
     }
 }
