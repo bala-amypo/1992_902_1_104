@@ -68,7 +68,15 @@ public class PolicyRule{
 
     }
     public PolicyRule(Long id,String ruleCode,String description,String appliesToRole,String appliesToDepartment,Integer maxDevicesAllowed,Boolean active){
-        
+        this.id=id;
+        this.ruleCode=ruleCode;
+        this.description=description;
+        this.appliesToRole=appliesToRole;
+        this.appliesToDepartment=appliesToDepartment;
+        this.maxDevicesAllowed=maxDevicesAllowed;
+        this.active=active;
+
+
 
     }
     
