@@ -33,7 +33,7 @@ public class DeviceCatalogItem{
     public String getModel(){
         return model;
     }
-    public void setModel(String ){
+    public void setModel(String model){
         this.model=model;
     }
     public Integer getMaxAllowedEmployee(){
@@ -52,7 +52,13 @@ public class DeviceCatalogItem{
     public DeviceCatlogItem(){
 
     }
-    public DeviceCatlogItem(Long id,){
+    public DeviceCatlogItem(Long id,String deviceCode,String deviceType,String model,Integer maxAllowedEmployee,Boolean active){
+        this.id=id;
+        this.deviceCode=deviceCode;
+        this.deviceType=deviceType;
+        this.model=model;
+        this.maxAllowedEmployee=maxAllowedEmployee;
+        this.active=active;
         
     }
 

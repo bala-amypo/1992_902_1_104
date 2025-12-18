@@ -14,6 +14,25 @@ public class EligibilityCheckRecord{
     private String reason;
     private LocalDateTime checkedAt;
 
+    public Long getId(){
+        return id;
+    }
+    pblic void setI(Long ){
+        this.
+    }
+    public Long get(){
+        return 
+    }
+    pblic void set(Long ){
+        this.
+    }
+    public Long get(){
+        return 
+    }
+    pblic void set(Long ){
+        this.
+    }
+
 
 
 
