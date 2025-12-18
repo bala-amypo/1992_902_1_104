@@ -11,5 +11,15 @@ public class EmployeeProfile{
     private String jobRole;
     private Boolean active;
     private LocalDateTime createdAt;
+
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
+    public String getEmployeeId(){
+        return employeeId;
+    }
     
 }
