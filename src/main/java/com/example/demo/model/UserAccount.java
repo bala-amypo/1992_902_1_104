@@ -48,6 +48,17 @@ public class UserAccount{
     public void setActive(Boolean active){
         this.active=active;
     }
-    public 
+    public UserAccount(){
+
+    }
+    public UserAccount(Long id,String fullName,String email,String passwordHash,String role,Boolean active){
+        this.id=id;
+        this.fullName=fullName;
+        this.email=email;
+        this.passwordHash=passwordHash;
+        this.role=role;
+        this.active=active;
+
+    }
     
 }
