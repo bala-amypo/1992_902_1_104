@@ -35,7 +35,16 @@ public class EligibilityCheckRecord{
     public Boolean getIsEligible(){
         return isEligible;
     }
-    
+    public void setIsEligible(String isEligible){
+        this.isEligible=isEligible;
+    }
+    public String getReason(){
+        return reason;
+    }
+    public void setReason(String reason){
+        this.reason=reason;
+    }
+    public 
 
 
 
