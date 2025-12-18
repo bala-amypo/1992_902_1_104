@@ -39,5 +39,15 @@ public class EmployeeProfile{
     public LocalDateTime getCeatedAt(){
         return createdAt;
     }
-    public void
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt=createdAt;
+    }
+    public EmployeeProfile(){
+        
+    }
+    public EmployeeProfile(Long id,String employeeId,String jobRole,Boolean active,LocalDateTime createdAt){
+        this.id=id;
+        this.employeeId=employeeId;
+
+    }
 }
