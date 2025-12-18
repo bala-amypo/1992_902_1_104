@@ -58,6 +58,18 @@ public class PolicyRule{
     public void setMaxDevicesAllowed(Integer maxDevicesAllowed){
         this.maxDevicesAllowed=maxDevicesAllowed;
     }
-    public Boolean getA
+    public Boolean getActive(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+    public PolicyRule(){
+
+    }
+    public PolicyRule(Long id,String ruleCode,String description,String appliesToRole,String appliesToDepartment,Integer maxDevicesAllowed,Boolean active){
+        
+
+    }
     
 }
