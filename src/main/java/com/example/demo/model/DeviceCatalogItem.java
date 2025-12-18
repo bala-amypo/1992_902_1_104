@@ -12,4 +12,13 @@ public class DeviceCatalogItem{
     private Integer maxAllowedEmployee;
     private Boolean active;
 
+    public Long getId(){
+        return id;
+    }
+    public void set(Long id){
+        this.id=id;
+    }
+    public 
+
+
 }
