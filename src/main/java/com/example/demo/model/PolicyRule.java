@@ -1,83 +1,60 @@
-// package com.example.demo.model;
-// import jakarta.persistence.*;
+package com.example.demo.model;
 
-// @Entity
+import jakarta.persistence.*;
 
-// public class PolicyRule{
-//     @Id
-//     @GeneratedValue(strategy=GenerationType.IDENTITY)
-//     private Long id;
-//     private String ruleCode;
-//     private String description;
-//     private String appliesToRole;
-//     private String appliesToDepartment;
-//     private Integer maxDevicesAllowed;
-//     private Boolean active;
+@Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "ruleCode"))
+public class PolicyRule {
 
-//     public Long getId(){
-//         return id;
-//     }
-//     public void setId(Long id){
-//         this.id=id;
-//     }
-//     public String getRuleCode(){
-//         return ruleCode;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-//     }
-//     public void setRuleCode(String ruleCode){
-//         this.ruleCode=ruleCode;
+    private String ruleCode;
+    private String description;
+    private String appliesToRole;
+    private String appliesToDepartment;
+    private Integer maxDevicesAllowed;
+    private Boolean active;
 
-//     }
-//      public String getDescription(){
-//         return description;
+    // Default constructor
+    public PolicyRule() {}
 
-//     }
-//     public void setDescription(String description){
-//         this.description=description;
-        
-//     }
-//      public String getAppliesToRole(){
-//         return appliesToRole;
+    // Parameterized constructor
+    public PolicyRule(String ruleCode, String description,
+                      String appliesToRole, String appliesToDepartment,
+                      Integer maxDevicesAllowed, Boolean active) {
+        this.ruleCode = ruleCode;
+        this.description = description;
+        this.appliesToRole = appliesToRole;
+        this.appliesToDepartment = appliesToDepartment;
+        this.maxDevicesAllowed = maxDevicesAllowed;
+        this.active = active;
+    }
 
-//     }
-//     public void setAppliesToRole(String appliesToRole){
-//         this.appliesToRole=appliesToRole;
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-        
-//     }
-//      public String getAppliesToDepartment(){
-//         return appliesToDepartment;
+    public String getRuleCode() { return ruleCode; }
+    public void setRuleCode(String ruleCode) { this.ruleCode = ruleCode; }
 
-//     }
-//     public void setAppliesToDepartment(String appliesToDepartment){
-//         this.appliesToDepartment=appliesToDepartment;
-//     }
-//     public Integer getMaxDevicesAllowed(){
-//         return maxDevicesAllowed;
-//     }
-//     public void setMaxDevicesAllowed(Integer maxDevicesAllowed){
-//         this.maxDevicesAllowed=maxDevicesAllowed;
-//     }
-//     public Boolean getActive(){
-//         return active;
-//     }
-//     public void setActive(Boolean active){
-//         this.active=active;
-//     }
-//     public PolicyRule(){
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-//     }
-//     public PolicyRule(Long id,String ruleCode,String description,String appliesToRole,String appliesToDepartment,Integer maxDevicesAllowed,Boolean active){
-//         this.id=id;
-//         this.ruleCode=ruleCode;
-//         this.description=description;
-//         this.appliesToRole=appliesToRole;
-//         this.appliesToDepartment=appliesToDepartment;
-//         this.maxDevicesAllowed=maxDevicesAllowed;
-//         this.active=active;
+    public String getAppliesToRole() { return appliesToRole; }
+    public void setAppliesToRole(String appliesToRole) { this.appliesToRole = appliesToRole; }
 
+    public String getAppliesToDepartment() { return appliesToDepartment; }
+    public void setAppliesToDepartment(String appliesToDepartment) {
+        this.appliesToDepartment = appliesToDepartment;
+    }
 
+    public Integer getMaxDevicesAllowed() { return maxDevicesAllowed; }
+    public void setMaxDevicesAllowed(Integer maxDevicesAllowed) {
+        this.maxDevicesAllowed = maxDevicesAllowed;
+    }
 
-//     }
-    
-// }
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
+}

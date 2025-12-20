@@ -1,66 +1,49 @@
-// package com.example.demo.model;
-// import jakarta.persistence.*;
-// import java.time.LocalDateTime;
+package com.example.demo.model;
 
-// @Entity
-// public class IssuedDeviceRecord{
-//     @Id
-//     @GeneratedValue(strategy=GenerationType.IDENTITY)
-//     private Long id;
-//     private Long employeeId;
-//     private Long deviceItemId;
-//     private LocalDateTime issuedDate;
-//     private LocalDateTime returnedDate;
-//     private String status;
-    
-//     public Long getId(){
-//         return id;
-//     }
-//     public void setId(Long id){
-//         this.id=id;
-//     }
-//     public Long getEmployeeId(){
-//         return employeeId;
-//     }
-//     public void setEmployeeId(Long employeeId){
-//         this.employeeId=employeeId;
-//     }
-//     public Long getDeviceItemId(){
-//         return deviceItemId;
-//     }
-//     public void setDeviceItemId(Long deviceItemId){
-//         this.deviceItemId=deviceItemId;
-//     }
-//     public LocalDateTime getIssuedDate(){
-//         return issuedDate;
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
-//     }
-//     public void setIssuedDate(LocalDateTime issuedDate){
-//         this.issuedDate=issuedDate;
-//     }
-//     public LocalDateTime getReturnedDate(){
-//         return returnedDate;
+@Entity
+public class IssuedDeviceRecord {
 
-//     }
-//     public void setReturnedDate(LocalDateTime returnedDate){
-//         this.returnedDate=returnedDate;
-//     }
-//     public String getStatus(){
-//         return status;
-//     }
-//     public void setStatus(String status){
-//         this.status=status;
-//     }
-//     public IssuedDeviceRecord(){
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-//     }
-//     public IssuedDeviceRecord(Long id,Long employeeId,Long deviceItemId,LocalDateTime issuedDate,LocalDateTime returnedDate,String status){
-//         this.id=id;
-//         this.employeeId=employeeId;
-//         this.deviceItemId=deviceItemId;
-//         this.issuedDate=issuedDate;
-//         this.returnedDate=returnedDate;
-//         this.status=status;
+    private Long employeeId;
+    private Long deviceItemId;
+    private LocalDate issuedDate;
+    private LocalDate returnedDate;
+    private String status;
 
-//     }
-// }
+    // Default constructor
+    public IssuedDeviceRecord() {}
+
+    // Parameterized constructor
+    public IssuedDeviceRecord(Long employeeId, Long deviceItemId,
+                              LocalDate issuedDate, String status) {
+        this.employeeId = employeeId;
+        this.deviceItemId = deviceItemId;
+        this.issuedDate = issuedDate;
+        this.status = status;
+    }
+
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public Long getEmployeeId() { return employeeId; }
+    public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
+
+    public Long getDeviceItemId() { return deviceItemId; }
+    public void setDeviceItemId(Long deviceItemId) { this.deviceItemId = deviceItemId; }
+
+    public LocalDate getIssuedDate() { return issuedDate; }
+    public void setIssuedDate(LocalDate issuedDate) { this.issuedDate = issuedDate; }
+
+    public LocalDate getReturnedDate() { return returnedDate; }
+    public void setReturnedDate(LocalDate returnedDate) { this.returnedDate = returnedDate; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+}
