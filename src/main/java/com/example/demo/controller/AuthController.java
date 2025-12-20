@@ -29,56 +29,6 @@ Model:====
 ====
 
 
-package com.example.demo.model;
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class UserAccount {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String fullName;
-    private String email;
-    private String passwordHash;
-    private String role;
-    private Boolean active;
-
-    // Default constructor
-    public UserAccount() {}
-
-    // Parameterized constructor
-    public UserAccount(String fullName, String email,
-                       String passwordHash, String role, Boolean active) {
-        this.fullName = fullName;
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.role = role;
-        this.active = active;
-    }
-
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPasswordHash() { return passwordHash; }
-    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
-
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
-
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) { this.active = active; }
-}
 
 
 
@@ -614,36 +564,11 @@ public class GlobalExceptionHandler {
 service::======
 
 
-package com.example.demo.service;
 
-import com.example.demo.model.EmployeeProfile;
-import java.util.List;
-
-public interface EmployeeProfileService {
-
-    EmployeeProfile createEmployee(EmployeeProfile employee);
-
-    EmployeeProfile getEmployeeById(Long id);
-
-    List<EmployeeProfile> getAllEmployees();
-
-    EmployeeProfile updateEmployeeStatus(Long id, boolean active);
-}
 
 
 ===
 
-package com.example.demo.service;
-
-import com.example.demo.model.DeviceCatalogItem;
-import java.util.List;
-
-public interface DeviceCatalogService {
-
-    DeviceCatalogItem createItem(DeviceCatalogItem item);
-
-    List<DeviceCatalogItem> getAllItems();
-}
 
 
 
