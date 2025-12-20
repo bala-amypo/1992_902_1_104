@@ -575,66 +575,20 @@ service::======
 ====
 
 
-package com.example.demo.service;
 
-import com.example.demo.model.IssuedDeviceRecord;
-import java.util.List;
-
-public interface IssuedDeviceRecordService {
-
-    IssuedDeviceRecord issueDevice(IssuedDeviceRecord record);
-
-    IssuedDeviceRecord returnDevice(Long id);
-
-    List<IssuedDeviceRecord> getIssuedDevicesByEmployee(Long employeeId);
-}
 
 
 ====
 
 
-package com.example.demo.service;
-
-import com.example.demo.model.PolicyRule;
-import java.util.List;
-
-public interface PolicyRuleService {
-
-    PolicyRule createRule(PolicyRule rule);
-
-    List<PolicyRule> getAllRules();
-
-    List<PolicyRule> getActiveRules();
-}
 
 
 =====
 
 
-package com.example.demo.service;
-
-import com.example.demo.model.EligibilityCheckRecord;
-import java.util.List;
-
-public interface EligibilityCheckService {
-
-    EligibilityCheckRecord validateEligibility(Long employeeId, Long deviceItemId);
-
-    List<EligibilityCheckRecord> getChecksByEmployee(Long employeeId);
-}
 
 ======
 
-package com.example.demo.service;
-
-import com.example.demo.model.UserAccount;
-
-public interface UserAccountService {
-
-    UserAccount register(UserAccount user);
-
-    UserAccount findByEmail(String email);
-}
 
 
 impl:=====
