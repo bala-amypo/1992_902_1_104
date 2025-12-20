@@ -1,3 +1,36 @@
-public class PolicyRuleController{
-    
+package com.example.demo.controller;
+
+import com.example.demo.model.PolicyRule;
+import com.example.demo.service.PolicyRuleService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/policy-rules")
+public class PolicyRuleController {
+
+    private final PolicyRuleService service;
+
+    public PolicyRuleController(PolicyRuleService service) {
+        this.service = service;
+    }
+
+    // Create policy rule
+    @PostMapping
+    public PolicyRule createRule(@RequestBody PolicyRule rule) {
+        return service.createRule(rule);
+    }
+
+    // Get all rules
+    @GetMapping
+    public List<PolicyRule> getAllRules() {
+        return service.getAllRules();
+    }
+
+    // Get active rules
+    @GetMapping("/active")
+    public List<PolicyRule> getActiveRules() {
+        return service.getActiveRules();
+    }
 }
