@@ -402,29 +402,11 @@ public class UserAccount {
 Repository:=====
 
 
-package com.example.demo.repository;
 
-import com.example.demo.model.EmployeeProfile;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface EmployeeProfileRepository
-        extends JpaRepository<EmployeeProfile, Long> {
-
-    EmployeeProfile findByEmployeeId(String employeeId);
-}
 
 ====
 
-package com.example.demo.repository;
 
-import com.example.demo.model.DeviceCatalogItem;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface DeviceCatalogItemRepository
-        extends JpaRepository<DeviceCatalogItem, Long> {
-
-    DeviceCatalogItem findByDeviceCode(String deviceCode);
-}
 
 
 ===
@@ -521,29 +503,7 @@ Exception:=====
 
 ====
 
-package com.example.demo.exception;
 
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-@RestControllerAdvice
-public class GlobalExceptionHandler {
-
-    @ExceptionHandler(BadRequestException.class)
-    public String handleBadRequest(BadRequestException ex) {
-        return ex.getMessage();
-    }
-
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public String handleNotFound(ResourceNotFoundException ex) {
-        return ex.getMessage();
-    }
-
-    @ExceptionHandler(Exception.class)
-    public String handleOther(Exception ex) {
-        return ex.getMessage();
-    }
-}
 
 
 service::======
