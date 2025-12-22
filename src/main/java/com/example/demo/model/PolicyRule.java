@@ -17,10 +17,10 @@ public class PolicyRule {
     private Integer maxDevicesAllowed;
     private Boolean active;
 
-    // Default constructor
+    
     public PolicyRule() {}
 
-    // Parameterized constructor
+    
     public PolicyRule(String ruleCode, String description,
                       String appliesToRole, String appliesToDepartment,
                       Integer maxDevicesAllowed, Boolean active) {
@@ -32,7 +32,7 @@ public class PolicyRule {
         this.active = active;
     }
 
-    // Getters and Setters
+   
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

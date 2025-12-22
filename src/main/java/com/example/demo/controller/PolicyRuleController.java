@@ -16,19 +16,19 @@ public class PolicyRuleController {
         this.service = service;
     }
 
-    // Create policy rule
+    
     @PostMapping
     public PolicyRule createRule(@RequestBody PolicyRule rule) {
         return service.createRule(rule);
     }
 
-    // Get all rules
+    
     @GetMapping
     public List<PolicyRule> getAllRules() {
         return service.getAllRules();
     }
 
-    // Get active rules
+   
     @GetMapping("/active")
     public List<PolicyRule> getActiveRules() {
         return service.getActiveRules();

@@ -16,10 +16,10 @@ public class IssuedDeviceRecord {
     private LocalDate returnedDate;
     private String status;
 
-    // Default constructor
+   
     public IssuedDeviceRecord() {}
 
-    // Parameterized constructor
+    
     public IssuedDeviceRecord(Long employeeId, Long deviceItemId,
                               LocalDate issuedDate, String status) {
         this.employeeId = employeeId;
@@ -28,7 +28,7 @@ public class IssuedDeviceRecord {
         this.status = status;
     }
 
-    // Getters and Setters
+  
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

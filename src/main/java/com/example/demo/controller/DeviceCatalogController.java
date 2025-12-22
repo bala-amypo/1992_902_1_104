@@ -16,13 +16,13 @@ public class DeviceCatalogController {
         this.service = service;
     }
 
-    // Create device catalog item
+    
     @PostMapping
     public DeviceCatalogItem createDevice(@RequestBody DeviceCatalogItem item) {
         return service.createItem(item);
     }
 
-    // Get all device items
+    
     @GetMapping
     public List<DeviceCatalogItem> getAllDevices() {
         return service.getAllItems();

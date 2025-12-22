@@ -24,10 +24,10 @@ public class EmployeeProfile {
     private Boolean active;
     private LocalDateTime createdAt;
 
-    // Default constructor
+   
     public EmployeeProfile() {}
 
-    // Parameterized constructor
+  
     public EmployeeProfile(String employeeId, String fullName, String email,
                            String department, String jobRole, Boolean active) {
         this.employeeId = employeeId;
@@ -43,7 +43,7 @@ public class EmployeeProfile {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -14,13 +14,13 @@ public class AuthController {
         this.service = service;
     }
 
-    // Register user
+    
     @PostMapping("/register")
     public UserAccount register(@RequestBody UserAccount user) {
         return service.register(user);
     }
 
-    // Login user (basic, no JWT)
+   
     @PostMapping("/login")
     public UserAccount login(@RequestBody UserAccount user) {
         return service.findByEmail(user.getEmail());

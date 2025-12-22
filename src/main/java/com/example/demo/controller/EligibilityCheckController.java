@@ -16,14 +16,14 @@ public class EligibilityCheckController {
         this.service = service;
     }
 
-    // Validate eligibility
+   
     @PostMapping("/validate/{employeeId}/{deviceItemId}")
     public EligibilityCheckRecord validateEligibility(@PathVariable Long employeeId,
                                                       @PathVariable Long deviceItemId) {
         return service.validateEligibility(employeeId, deviceItemId);
     }
 
-    // Get checks by employee
+   
     @GetMapping("/employee/{employeeId}")
     public List<EligibilityCheckRecord> getChecks(@PathVariable Long employeeId) {
         return service.getChecksByEmployee(employeeId);
