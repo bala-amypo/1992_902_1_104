@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = "employeeId"),
+    @UniqueConstraint(columnNames = "email")
+})
 public class EmployeeProfile {
 
     @Id
