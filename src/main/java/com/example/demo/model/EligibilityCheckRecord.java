@@ -16,10 +16,10 @@ public class EligibilityCheckRecord {
     private String reason;
     private LocalDateTime checkedAt;
 
-    // Default constructor
+    
     public EligibilityCheckRecord() {}
 
-    // Parameterized constructor
+   
     public EligibilityCheckRecord(Long employeeId, Long deviceItemId,
                                   Boolean isEligible, String reason) {
         this.employeeId = employeeId;

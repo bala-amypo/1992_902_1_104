@@ -16,10 +16,10 @@ public class DeviceCatalogItem {
     private Integer maxAllowedPerEmployee;
     private Boolean active;
 
-    // Default constructor
+    
     public DeviceCatalogItem() {}
 
-    // Parameterized constructor
+   
     public DeviceCatalogItem(String deviceCode, String deviceType, String model,
                              Integer maxAllowedPerEmployee, Boolean active) {
         this.deviceCode = deviceCode;
@@ -29,7 +29,7 @@ public class DeviceCatalogItem {
         this.active = active;
     }
 
-    // Getters and Setters
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
