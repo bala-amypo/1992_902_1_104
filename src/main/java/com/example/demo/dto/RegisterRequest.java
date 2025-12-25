@@ -50,4 +50,3 @@ public class RegisterRequest {
         this.role = role;
     }
 }
-
