@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.EmployeeProfile;
 import com.example.demo.service.EmployeeProfileService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,31 +11,31 @@ import java.util.List;
 @RequestMapping("/api/employees")
 public class EmployeeProfileController {
 
-    private final EmployeeProfileService service;
+    private final EmployeeProfileService employeeService;
 
-    public EmployeeProfileController(EmployeeProfileService service) {
-        this.service = service;
+    public EmployeeProfileController(EmployeeProfileService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @PostMapping
-    public EmployeeProfile createEmployee(@RequestBody EmployeeProfile employee) {
-        return service.createEmployee(employee);
+    public ResponseEntity<EmployeeProfile> create(@RequestBody EmployeeProfile employee) {
+        return ResponseEntity.ok(employeeService.createEmployee(employee));
     }
 
     @GetMapping("/{id}")
-    public EmployeeProfile getEmployeeById(@PathVariable Long id) {
-        return service.getEmployeeById(id);
+    public ResponseEntity<EmployeeProfile> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(employeeService.getEmployeeById(id));
     }
 
     @GetMapping
-    public List<EmployeeProfile> getAllEmployees() {
-        return service.getAllEmployees();
+    public ResponseEntity<List<EmployeeProfile>> getAll() {
+        return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
     @PutMapping("/{id}/status")
-    public EmployeeProfile updateEmployeeStatus(
+    public ResponseEntity<EmployeeProfile> updateStatus(
             @PathVariable Long id,
             @RequestParam boolean active) {
-        return service.updateEmployeeStatus(id, active);
+        return ResponseEntity.ok(employeeService.updateEmployeeStatus(id, active));
     }
 }

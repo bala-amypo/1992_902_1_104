@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DeviceCatalogItem;
 import com.example.demo.service.DeviceCatalogService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,26 +11,26 @@ import java.util.List;
 @RequestMapping("/api/devices")
 public class DeviceCatalogController {
 
-    private final DeviceCatalogService service;
+    private final DeviceCatalogService deviceService;
 
-    public DeviceCatalogController(DeviceCatalogService service) {
-        this.service = service;
+    public DeviceCatalogController(DeviceCatalogService deviceService) {
+        this.deviceService = deviceService;
     }
 
     @PostMapping
-    public DeviceCatalogItem createItem(@RequestBody DeviceCatalogItem item) {
-        return service.createItem(item);
+    public ResponseEntity<DeviceCatalogItem> create(@RequestBody DeviceCatalogItem item) {
+        return ResponseEntity.ok(deviceService.createItem(item));
     }
 
-    @PutMapping("/{id}/status")
-    public DeviceCatalogItem updateActiveStatus(
+    @PutMapping("/{id}/active")
+    public ResponseEntity<DeviceCatalogItem> updateStatus(
             @PathVariable Long id,
             @RequestParam boolean active) {
-        return service.updateActiveStatus(id, active);
+        return ResponseEntity.ok(deviceService.updateActiveStatus(id, active));
     }
 
     @GetMapping
-    public List<DeviceCatalogItem> getAllItems() {
-        return service.getAllItems();
+    public ResponseEntity<List<DeviceCatalogItem>> getAll() {
+        return ResponseEntity.ok(deviceService.getAllItems());
     }
 }

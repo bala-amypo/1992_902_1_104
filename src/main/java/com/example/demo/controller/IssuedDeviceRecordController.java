@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.IssuedDeviceRecord;
 import com.example.demo.service.IssuedDeviceRecordService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,25 +11,21 @@ import java.util.List;
 @RequestMapping("/api/issued-devices")
 public class IssuedDeviceRecordController {
 
-    private final IssuedDeviceRecordService service;
+    private final IssuedDeviceRecordService issuedService;
 
-    public IssuedDeviceRecordController(IssuedDeviceRecordService service) {
-        this.service = service;
-    }
-
-    @PostMapping
-    public IssuedDeviceRecord issueDevice(@RequestBody IssuedDeviceRecord record) {
-        return service.issueDevice(record);
+    public IssuedDeviceRecordController(IssuedDeviceRecordService issuedService) {
+        this.issuedService = issuedService;
     }
 
     @PutMapping("/{id}/return")
-    public IssuedDeviceRecord returnDevice(@PathVariable Long id) {
-        return service.returnDevice(id);
+    public ResponseEntity<IssuedDeviceRecord> returnDevice(@PathVariable Long id) {
+        return ResponseEntity.ok(issuedService.returnDevice(id));
     }
 
     @GetMapping("/employee/{employeeId}")
-    public List<IssuedDeviceRecord> getIssuedDevicesByEmployee(
+    public ResponseEntity<List<IssuedDeviceRecord>> getByEmployee(
             @PathVariable Long employeeId) {
-        return service.getIssuedDevicesByEmployee(employeeId);
+        return ResponseEntity.ok(issuedService.getIssuedDevicesByEmployee(employeeId));
     }
 }
+

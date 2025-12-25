@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.EligibilityCheckRecord;
 import com.example.demo.service.EligibilityCheckService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,22 +11,24 @@ import java.util.List;
 @RequestMapping("/api/eligibility")
 public class EligibilityCheckController {
 
-    private final EligibilityCheckService service;
+    private final EligibilityCheckService eligibilityService;
 
-    public EligibilityCheckController(EligibilityCheckService service) {
-        this.service = service;
+    public EligibilityCheckController(EligibilityCheckService eligibilityService) {
+        this.eligibilityService = eligibilityService;
     }
 
     @PostMapping("/validate/{employeeId}/{deviceItemId}")
-    public EligibilityCheckRecord validateEligibility(
+    public ResponseEntity<EligibilityCheckRecord> validate(
             @PathVariable Long employeeId,
             @PathVariable Long deviceItemId) {
-        return service.validateEligibility(employeeId, deviceItemId);
+        return ResponseEntity.ok(
+                eligibilityService.validateEligibility(employeeId, deviceItemId));
     }
 
     @GetMapping("/employee/{employeeId}")
-    public List<EligibilityCheckRecord> getChecksByEmployee(
+    public ResponseEntity<List<EligibilityCheckRecord>> getByEmployee(
             @PathVariable Long employeeId) {
-        return service.getChecksByEmployee(employeeId);
+        return ResponseEntity.ok(
+                eligibilityService.getChecksByEmployee(employeeId));
     }
 }
