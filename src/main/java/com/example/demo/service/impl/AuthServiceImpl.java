@@ -1,42 +1,44 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.BadRequestException;
-import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
+import com.example.demo.dto.RegisterRequest;
 import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
-import com.example.demo.service.UserAccountService;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.example.demo.service.AuthService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
-public class UserAccountServiceImpl implements UserAccountService {
+public class AuthServiceImpl implements AuthService {
 
-    private final UserAccountRepository userAccountRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserAccountRepository repository;
 
-    public UserAccountServiceImpl(UserAccountRepository userAccountRepository,
-                                  PasswordEncoder passwordEncoder) {
-        this.userAccountRepository = userAccountRepository;
-        this.passwordEncoder = passwordEncoder;
+    public AuthServiceImpl(UserAccountRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public UserAccount register(UserAccount user) {
+    public AuthResponse register(RegisterRequest request) {
 
-        if (userAccountRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new BadRequestException("Email already exists");
-        }
+        UserAccount user = new UserAccount();
+        user.setFullName(request.getFullName());
+        user.setEmail(request.getEmail());
+        user.setPasswordHash(request.getPassword());
+        user.setRole(request.getRole());
+        user.setActive(true);
 
-        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
-        return userAccountRepository.save(user);
+        UserAccount saved = repository.save(user);
+
+        return new AuthResponse("dummy-token", saved.getId(),
+                saved.getEmail(), saved.getRole());
     }
 
     @Override
-    public UserAccount findByEmail(String email) {
-        return userAccountRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User not found"));
+    public AuthResponse login(AuthRequest request) {
+
+        UserAccount user = repository.findByEmail(request.getEmail());
+
+        return new AuthResponse("dummy-token", user.getId(),
+                user.getEmail(), user.getRole());
     }
 }
