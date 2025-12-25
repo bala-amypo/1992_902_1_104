@@ -1,9 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.BadRequestException;
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.*;
-import com.example.demo.repository.*;
+import com.example.demo.model.EligibilityCheckRecord;
+import com.example.demo.repository.EligibilityCheckRecordRepository;
+import com.example.demo.repository.IssuedDeviceRecordRepository;
 import com.example.demo.service.EligibilityCheckService;
 import org.springframework.stereotype.Service;
 
@@ -12,68 +11,38 @@ import java.util.List;
 @Service
 public class EligibilityCheckServiceImpl implements EligibilityCheckService {
 
-    private final EmployeeProfileRepository employeeRepo;
-    private final DeviceCatalogItemRepository deviceRepo;
     private final IssuedDeviceRecordRepository issuedRepo;
-    private final PolicyRuleRepository policyRepo;
-    private final EligibilityCheckRecordRepository checkRepo;
+    private final EligibilityCheckRecordRepository eligibilityRepo;
 
     public EligibilityCheckServiceImpl(
-            EmployeeProfileRepository employeeRepo,
-            DeviceCatalogItemRepository deviceRepo,
             IssuedDeviceRecordRepository issuedRepo,
-            PolicyRuleRepository policyRepo,
-            EligibilityCheckRecordRepository checkRepo) {
-
-        this.employeeRepo = employeeRepo;
-        this.deviceRepo = deviceRepo;
+            EligibilityCheckRecordRepository eligibilityRepo) {
         this.issuedRepo = issuedRepo;
-        this.policyRepo = policyRepo;
-        this.checkRepo = checkRepo;
+        this.eligibilityRepo = eligibilityRepo;
     }
 
     @Override
     public EligibilityCheckRecord validateEligibility(Long employeeId, Long deviceItemId) {
 
-        EmployeeProfile employee = employeeRepo.findById(employeeId)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found"));
-
-        if (!employee.getActive()) {
-            throw new BadRequestException("Employee not active");
-        }
-
-        DeviceCatalogItem device = deviceRepo.findById(deviceItemId)
-                .orElseThrow(() -> new ResourceNotFoundException("Device not found"));
-
-        if (!device.getActive()) {
-            throw new BadRequestException("Device inactive");
-        }
-
-        if (issuedRepo.findActiveByEmployeeAndDevice(employeeId, deviceItemId) != null) {
-            throw new BadRequestException("active issuance exists");
-        }
-
         long count = issuedRepo.countActiveDevicesForEmployee(employeeId);
-        if (count >= device.getMaxAllowedPerEmployee()) {
-            throw new BadRequestException("Maximum allowed devices");
+
+        EligibilityCheckRecord record = new EligibilityCheckRecord();
+        record.setEmployeeId(employeeId);
+        record.setDeviceItemId(deviceItemId);
+
+        if (count > 0) {
+            record.setIsEligible(false);
+            record.setReason("Device limit exceeded");
+        } else {
+            record.setIsEligible(true);
+            record.setReason("Eligible");
         }
 
-        for (PolicyRule rule : policyRepo.findByActiveTrue()) {
-            if (rule.getMaxDevicesAllowed() != null &&
-                count >= rule.getMaxDevicesAllowed()) {
-                throw new BadRequestException("Policy violation");
-            }
-        }
-
-        EligibilityCheckRecord record =
-                new EligibilityCheckRecord(employeeId, deviceItemId, true, "Eligible");
-
-        return checkRepo.save(record);
+        return eligibilityRepo.save(record);
     }
 
     @Override
     public List<EligibilityCheckRecord> getChecksByEmployee(Long employeeId) {
-        return checkRepo.findByEmployeeId(employeeId);
+        return eligibilityRepo.findByEmployeeId(employeeId);
     }
 }
-

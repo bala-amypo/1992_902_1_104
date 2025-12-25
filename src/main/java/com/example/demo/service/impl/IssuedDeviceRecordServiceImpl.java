@@ -1,7 +1,5 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.BadRequestException;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.IssuedDeviceRecord;
 import com.example.demo.repository.IssuedDeviceRecordRepository;
 import com.example.demo.service.IssuedDeviceRecordService;
@@ -27,17 +25,14 @@ public class IssuedDeviceRecordServiceImpl implements IssuedDeviceRecordService 
     }
 
     @Override
-    public IssuedDeviceRecord returnDevice(Long id) {
-        IssuedDeviceRecord record = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Issued device not found"));
-
-        if (record.getReturnedDate() != null) {
-            throw new BadRequestException("already returned");
+    public IssuedDeviceRecord returnDevice(Long recordId) {
+        IssuedDeviceRecord record = repository.findById(recordId).orElse(null);
+        if (record != null) {
+            record.setReturnedDate(LocalDate.now());
+            record.setStatus("RETURNED");
+            return repository.save(record);
         }
-
-        record.setReturnedDate(LocalDate.now());
-        record.setStatus("RETURNED");
-        return repository.save(record);
+        return null;
     }
 
     @Override

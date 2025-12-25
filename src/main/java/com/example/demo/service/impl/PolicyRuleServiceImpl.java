@@ -1,6 +1,5 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.PolicyRule;
 import com.example.demo.repository.PolicyRuleRepository;
 import com.example.demo.service.PolicyRuleService;
@@ -19,19 +18,17 @@ public class PolicyRuleServiceImpl implements PolicyRuleService {
 
     @Override
     public PolicyRule createRule(PolicyRule rule) {
-        if (repository.findByRuleCode(rule.getRuleCode()) != null) {
-            throw new BadRequestException("Rule code already exists");
-        }
         return repository.save(rule);
-    }
-
-    @Override
-    public List<PolicyRule> getAllRules() {
-        return repository.findAll();
     }
 
     @Override
     public List<PolicyRule> getActiveRules() {
         return repository.findByActiveTrue();
     }
+
+    @Override
+    public List<PolicyRule> getAllRules() {
+        return repository.findAll();
+    }
 }
+
