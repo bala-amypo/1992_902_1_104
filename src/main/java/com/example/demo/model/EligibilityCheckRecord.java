@@ -16,39 +16,69 @@ public class EligibilityCheckRecord {
     private String reason;
     private LocalDateTime checkedAt;
 
-    
-    public EligibilityCheckRecord() {}
+    public EligibilityCheckRecord() {
+    }
 
-   
-    public EligibilityCheckRecord(Long employeeId, Long deviceItemId,
-                                  Boolean isEligible, String reason) {
+    public EligibilityCheckRecord(Long id, Long employeeId, Long deviceItemId,
+                                  Boolean isEligible, String reason, LocalDateTime checkedAt) {
+        this.id = id;
         this.employeeId = employeeId;
         this.deviceItemId = deviceItemId;
         this.isEligible = isEligible;
         this.reason = reason;
+        this.checkedAt = checkedAt;
     }
 
     @PrePersist
-    public void onCheck() {
+    public void prePersist() {
         this.checkedAt = LocalDateTime.now();
     }
 
-    
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Long getEmployeeId() { return employeeId; }
-    public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Long getDeviceItemId() { return deviceItemId; }
-    public void setDeviceItemId(Long deviceItemId) { this.deviceItemId = deviceItemId; }
+    public Long getEmployeeId() {
+        return employeeId;
+    }
 
-    public Boolean getIsEligible() { return isEligible; }
-    public void setIsEligible(Boolean isEligible) { this.isEligible = isEligible; }
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
 
-    public String getReason() { return reason; }
-    public void setReason(String reason) { this.reason = reason; }
+    public Long getDeviceItemId() {
+        return deviceItemId;
+    }
 
-    public LocalDateTime getCheckedAt() { return checkedAt; }
-    public void setCheckedAt(LocalDateTime checkedAt) { this.checkedAt = checkedAt; }
+    public void setDeviceItemId(Long deviceItemId) {
+        this.deviceItemId = deviceItemId;
+    }
+
+    public Boolean getIsEligible() {
+        return isEligible;
+    }
+
+    public void setIsEligible(Boolean isEligible) {
+        this.isEligible = isEligible;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public LocalDateTime getCheckedAt() {
+        return checkedAt;
+    }
+
+    public void setCheckedAt(LocalDateTime checkedAt) {
+        this.checkedAt = checkedAt;
+    }
 }
