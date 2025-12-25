@@ -13,7 +13,8 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Employee Equipment Issuance Policy Checker API")
-                        .version("1.0")
-                        .description("API documentation for the project"));
+                        .version("1.0.0")
+                        .description("API documentation"));
     }
 }
+
