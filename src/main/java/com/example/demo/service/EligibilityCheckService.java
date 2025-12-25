@@ -10,3 +10,4 @@ public interface EligibilityCheckService {
 
     List<EligibilityCheckRecord> getChecksByEmployee(Long employeeId);
 }
+
