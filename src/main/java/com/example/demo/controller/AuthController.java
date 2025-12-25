@@ -1,30 +1,28 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.UserAccount;
-import com.example.demo.service.UserAccountService;
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
+import com.example.demo.dto.RegisterRequest;
+import com.example.demo.service.AuthService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final UserAccountService service;
+    private final AuthService service;
 
-    public AuthController(UserAccountService service) {
+    public AuthController(AuthService service) {
         this.service = service;
     }
 
-    
     @PostMapping("/register")
-    public UserAccount register(@RequestBody UserAccount user) {
-        return service.register(user);
+    public AuthResponse register(@RequestBody RegisterRequest request) {
+        return service.register(request);
     }
 
-   
     @PostMapping("/login")
-    public UserAccount login(@RequestBody UserAccount user) {
-        return service.findByEmail(user.getEmail());
+    public AuthResponse login(@RequestBody AuthRequest request) {
+        return service.login(request);
     }
 }
-
-
