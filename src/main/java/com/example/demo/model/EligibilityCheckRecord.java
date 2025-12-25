@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "eligibility_check_records")
 public class EligibilityCheckRecord {
 
     @Id
@@ -16,17 +17,16 @@ public class EligibilityCheckRecord {
     private String reason;
     private LocalDateTime checkedAt;
 
-    public EligibilityCheckRecord() {
-    }
+    // ✅ Default constructor
+    public EligibilityCheckRecord() {}
 
-    public EligibilityCheckRecord(Long id, Long employeeId, Long deviceItemId,
-                                  Boolean isEligible, String reason, LocalDateTime checkedAt) {
-        this.id = id;
+    // ✅ Parameterized constructor
+    public EligibilityCheckRecord(Long employeeId, Long deviceItemId,
+                                  Boolean isEligible, String reason) {
         this.employeeId = employeeId;
         this.deviceItemId = deviceItemId;
         this.isEligible = isEligible;
         this.reason = reason;
-        this.checkedAt = checkedAt;
     }
 
     @PrePersist
@@ -34,51 +34,22 @@ public class EligibilityCheckRecord {
         this.checkedAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
+    // ✅ Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getEmployeeId() { return employeeId; }
+    public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
 
-    public Long getEmployeeId() {
-        return employeeId;
-    }
+    public Long getDeviceItemId() { return deviceItemId; }
+    public void setDeviceItemId(Long deviceItemId) { this.deviceItemId = deviceItemId; }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
+    public Boolean getIsEligible() { return isEligible; }
+    public void setIsEligible(Boolean isEligible) { this.isEligible = isEligible; }
 
-    public Long getDeviceItemId() {
-        return deviceItemId;
-    }
+    public String getReason() { return reason; }
+    public void setReason(String reason) { this.reason = reason; }
 
-    public void setDeviceItemId(Long deviceItemId) {
-        this.deviceItemId = deviceItemId;
-    }
-
-    public Boolean getIsEligible() {
-        return isEligible;
-    }
-
-    public void setIsEligible(Boolean isEligible) {
-        this.isEligible = isEligible;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public LocalDateTime getCheckedAt() {
-        return checkedAt;
-    }
-
-    public void setCheckedAt(LocalDateTime checkedAt) {
-        this.checkedAt = checkedAt;
-    }
+    public LocalDateTime getCheckedAt() { return checkedAt; }
+    public void setCheckedAt(LocalDateTime checkedAt) { this.checkedAt = checkedAt; }
 }

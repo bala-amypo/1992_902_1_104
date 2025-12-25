@@ -3,6 +3,7 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "user_accounts")
 public class UserAccount {
 
     @Id
@@ -10,17 +11,22 @@ public class UserAccount {
     private Long id;
 
     private String fullName;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
     private String passwordHash;
-    private String role;   // ADMIN / IT_OPERATOR / AUDITOR
+    private String role;
     private Boolean active;
 
+    // ✅ Default constructor
     public UserAccount() {
+        this.active = true;
     }
 
-    public UserAccount(Long id, String fullName, String email,
+    // ✅ Parameterized constructor
+    public UserAccount(String fullName, String email,
                        String passwordHash, String role, Boolean active) {
-        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.passwordHash = passwordHash;
@@ -28,51 +34,22 @@ public class UserAccount {
         this.active = active;
     }
 
-    public Long getId() {
-        return id;
-    }
+    // ✅ Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getFullName() { return fullName; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
-    public String getFullName() {
-        return fullName;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+    public String getPasswordHash() { return passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
 }

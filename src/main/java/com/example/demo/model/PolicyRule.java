@@ -3,26 +3,31 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "policy_rules")
 public class PolicyRule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String ruleCode;
+
     private String description;
     private String appliesToRole;
     private String appliesToDepartment;
     private Integer maxDevicesAllowed;
     private Boolean active;
 
+    // ✅ Default constructor
     public PolicyRule() {
+        this.active = true;
     }
 
-    public PolicyRule(Long id, String ruleCode, String description,
+    // ✅ Parameterized constructor
+    public PolicyRule(String ruleCode, String description,
                       String appliesToRole, String appliesToDepartment,
                       Integer maxDevicesAllowed, Boolean active) {
-        this.id = id;
         this.ruleCode = ruleCode;
         this.description = description;
         this.appliesToRole = appliesToRole;
@@ -31,59 +36,29 @@ public class PolicyRule {
         this.active = active;
     }
 
-    public Long getId() {
-        return id;
-    }
+    // ✅ Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getRuleCode() { return ruleCode; }
+    public void setRuleCode(String ruleCode) { this.ruleCode = ruleCode; }
 
-    public String getRuleCode() {
-        return ruleCode;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setRuleCode(String ruleCode) {
-        this.ruleCode = ruleCode;
-    }
+    public String getAppliesToRole() { return appliesToRole; }
+    public void setAppliesToRole(String appliesToRole) { this.appliesToRole = appliesToRole; }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAppliesToRole() {
-        return appliesToRole;
-    }
-
-    public void setAppliesToRole(String appliesToRole) {
-        this.appliesToRole = appliesToRole;
-    }
-
-    public String getAppliesToDepartment() {
-        return appliesToDepartment;
-    }
-
+    public String getAppliesToDepartment() { return appliesToDepartment; }
     public void setAppliesToDepartment(String appliesToDepartment) {
         this.appliesToDepartment = appliesToDepartment;
     }
 
-    public Integer getMaxDevicesAllowed() {
-        return maxDevicesAllowed;
-    }
-
+    public Integer getMaxDevicesAllowed() { return maxDevicesAllowed; }
     public void setMaxDevicesAllowed(Integer maxDevicesAllowed) {
         this.maxDevicesAllowed = maxDevicesAllowed;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
 }
