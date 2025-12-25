@@ -13,24 +13,31 @@ import java.util.Map;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final UserAccountService userService;
-    private final JwtTokenProvider jwtTokenProvider;
+    private final UserAccountService userAccountService;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthController(UserAccountService userService,
-                          JwtTokenProvider jwtTokenProvider,
+    // 🔑 Manually created (NOT a Spring bean)
+    private final JwtTokenProvider jwtTokenProvider =
+            new JwtTokenProvider(
+                    "ChangeThisSecretKeyForJwt123456789012345",
+                    3600000
+            );
+
+    // ✅ Constructor injection (correct annotation usage)
+    public AuthController(UserAccountService userAccountService,
                           PasswordEncoder passwordEncoder) {
-        this.userService = userService;
-        this.jwtTokenProvider = jwtTokenProvider;
+        this.userAccountService = userAccountService;
         this.passwordEncoder = passwordEncoder;
     }
 
+    // ✅ LOGIN ENDPOINT
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
+
         String email = request.get("email");
         String password = request.get("password");
 
-        UserAccount user = userService.findByEmail(email);
+        UserAccount user = userAccountService.findByEmail(email);
 
         if (!passwordEncoder.matches(password, user.getPasswordHash())) {
             return ResponseEntity.status(401).body("Invalid credentials");
