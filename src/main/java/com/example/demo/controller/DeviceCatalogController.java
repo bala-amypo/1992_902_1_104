@@ -16,15 +16,20 @@ public class DeviceCatalogController {
         this.service = service;
     }
 
-    
     @PostMapping
-    public DeviceCatalogItem createDevice(@RequestBody DeviceCatalogItem item) {
+    public DeviceCatalogItem createItem(@RequestBody DeviceCatalogItem item) {
         return service.createItem(item);
     }
 
-    
+    @PutMapping("/{id}/status")
+    public DeviceCatalogItem updateActiveStatus(
+            @PathVariable Long id,
+            @RequestParam boolean active) {
+        return service.updateActiveStatus(id, active);
+    }
+
     @GetMapping
-    public List<DeviceCatalogItem> getAllDevices() {
+    public List<DeviceCatalogItem> getAllItems() {
         return service.getAllItems();
     }
 }

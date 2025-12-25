@@ -16,21 +16,19 @@ public class IssuedDeviceRecordController {
         this.service = service;
     }
 
-    
     @PostMapping
     public IssuedDeviceRecord issueDevice(@RequestBody IssuedDeviceRecord record) {
         return service.issueDevice(record);
     }
 
-    
     @PutMapping("/{id}/return")
     public IssuedDeviceRecord returnDevice(@PathVariable Long id) {
         return service.returnDevice(id);
     }
 
-   
     @GetMapping("/employee/{employeeId}")
-    public List<IssuedDeviceRecord> getIssuedDevices(@PathVariable Long employeeId) {
+    public List<IssuedDeviceRecord> getIssuedDevicesByEmployee(
+            @PathVariable Long employeeId) {
         return service.getIssuedDevicesByEmployee(employeeId);
     }
 }
