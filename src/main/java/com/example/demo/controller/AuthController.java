@@ -19,52 +19,39 @@ public class AuthController {
 
     private final UserAccountService userAccountService;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider; // ✅ injected
 
-    // JwtTokenProvider is NOT a Spring bean (test-safe)
-    private final JwtTokenProvider jwtTokenProvider =
-            new JwtTokenProvider(
-                    "ChangeThisSecretKeyForJwt123456789012345",
-                    3600000
-            );
-
-    // Constructor injection
+    // ✅ Constructor Injection ONLY
     public AuthController(UserAccountService userAccountService,
-                          PasswordEncoder passwordEncoder) {
+                          PasswordEncoder passwordEncoder,
+                          JwtTokenProvider jwtTokenProvider) {
         this.userAccountService = userAccountService;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    // =========================
-    // REGISTER
-    // =========================
+    // ================= REGISTER =================
     @Operation(summary = "Register new user")
     @PostMapping("/register")
     public ResponseEntity<UserAccount> register(
             @org.springframework.web.bind.annotation.RequestBody UserAccount user) {
 
-        // passwordHash temporarily holds plain password
         user.setPasswordHash(
                 passwordEncoder.encode(user.getPasswordHash())
         );
 
-        UserAccount savedUser = userAccountService.register(user);
-        return ResponseEntity.ok(savedUser);
+        return ResponseEntity.ok(userAccountService.register(user));
     }
 
-    // =========================
-    // LOGIN
-    // =========================
-    @Operation(
-            summary = "User Login",
-            description = "Login using email and password"
-    )
+    // ================= LOGIN =================
+    @Operation(summary = "User Login")
     @PostMapping("/login")
     public ResponseEntity<?> login(
             @RequestBody(
                     required = true,
                     content = @Content(
                             schema = @Schema(
-                                    example = "{ \"email\": \"ajay@example.com\", \"password\": \"password123\" }"
+                                    example = "{ \"email\": \"ajay@example.com\", \"password\": \"ajay123\" }"
                             )
                     )
             )
