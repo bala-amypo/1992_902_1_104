@@ -5,19 +5,15 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
 import com.example.demo.service.UserAccountService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
 
     private final UserAccountRepository userRepo;
-    private final PasswordEncoder passwordEncoder;
 
-    public UserAccountServiceImpl(UserAccountRepository userRepo,
-                                  PasswordEncoder passwordEncoder) {
+    public UserAccountServiceImpl(UserAccountRepository userRepo) {
         this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -25,7 +21,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         if (userRepo.findByEmail(user.getEmail()).isPresent()) {
             throw new BadRequestException("Email already exists");
         }
-        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
+        // ❌ DO NOT encode password here
         return userRepo.save(user);
     }
 
