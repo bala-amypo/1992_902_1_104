@@ -16,21 +16,28 @@ public class AuthController {
     private final UserAccountService userAccountService;
     private final PasswordEncoder passwordEncoder;
 
-    // 🔑 Manually created (NOT a Spring bean)
+    // Manually created (NOT Spring bean – test safe)
     private final JwtTokenProvider jwtTokenProvider =
             new JwtTokenProvider(
                     "ChangeThisSecretKeyForJwt123456789012345",
                     3600000
             );
 
-    // ✅ Constructor injection (correct annotation usage)
     public AuthController(UserAccountService userAccountService,
                           PasswordEncoder passwordEncoder) {
         this.userAccountService = userAccountService;
         this.passwordEncoder = passwordEncoder;
     }
 
-    // ✅ LOGIN ENDPOINT
+    // ✅ REGISTER API (THIS WAS MISSING)
+    @PostMapping("/register")
+    public ResponseEntity<UserAccount> register(@RequestBody UserAccount user) {
+        // passwordHash temporarily holds plain password
+        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
+        return ResponseEntity.ok(userAccountService.register(user));
+    }
+
+    // ✅ LOGIN API
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
 
