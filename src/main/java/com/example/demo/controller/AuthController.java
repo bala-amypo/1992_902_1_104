@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.LoginRequest;
 import com.example.demo.model.UserAccount;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.UserAccountService;
@@ -16,33 +17,43 @@ public class AuthController {
     private final UserAccountService userAccountService;
     private final PasswordEncoder passwordEncoder;
 
-    // Manually created (NOT Spring bean – test safe)
+    // 🔑 Manually created (NOT a Spring bean – test safe)
     private final JwtTokenProvider jwtTokenProvider =
             new JwtTokenProvider(
                     "ChangeThisSecretKeyForJwt123456789012345",
                     3600000
             );
 
+    // ✅ Constructor injection
     public AuthController(UserAccountService userAccountService,
                           PasswordEncoder passwordEncoder) {
         this.userAccountService = userAccountService;
         this.passwordEncoder = passwordEncoder;
     }
 
-    // ✅ REGISTER API (THIS WAS MISSING)
+    // =========================
+    // REGISTER
+    // =========================
     @PostMapping("/register")
     public ResponseEntity<UserAccount> register(@RequestBody UserAccount user) {
-        // passwordHash temporarily holds plain password
-        user.setPasswordHash(passwordEncoder.encode(user.getPasswordHash()));
-        return ResponseEntity.ok(userAccountService.register(user));
+
+        // passwordHash temporarily contains plain password
+        user.setPasswordHash(
+                passwordEncoder.encode(user.getPasswordHash())
+        );
+
+        UserAccount savedUser = userAccountService.register(user);
+        return ResponseEntity.ok(savedUser);
     }
 
-    // ✅ LOGIN API
+    // =========================
+    // LOGIN
+    // =========================
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-        String email = request.get("email");
-        String password = request.get("password");
+        String email = request.getEmail();
+        String password = request.getPassword();
 
         UserAccount user = userAccountService.findByEmail(email);
 
