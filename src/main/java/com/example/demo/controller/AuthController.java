@@ -3,6 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.model.UserAccount;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.UserAccountService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +37,10 @@ public class AuthController {
     // =========================
     // REGISTER
     // =========================
+    @Operation(summary = "Register new user")
     @PostMapping("/register")
-    public ResponseEntity<UserAccount> register(@RequestBody UserAccount user) {
+    public ResponseEntity<UserAccount> register(
+            @org.springframework.web.bind.annotation.RequestBody UserAccount user) {
 
         // passwordHash temporarily holds plain password
         user.setPasswordHash(
@@ -48,8 +54,22 @@ public class AuthController {
     // =========================
     // LOGIN
     // =========================
+    @Operation(
+            summary = "User Login",
+            description = "Login using email and password"
+    )
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
+    public ResponseEntity<?> login(
+            @RequestBody(
+                    required = true,
+                    content = @Content(
+                            schema = @Schema(
+                                    example = "{ \"email\": \"ajay@example.com\", \"password\": \"password123\" }"
+                            )
+                    )
+            )
+            @org.springframework.web.bind.annotation.RequestBody
+            Map<String, String> request) {
 
         String email = request.get("email");
         String password = request.get("password");
