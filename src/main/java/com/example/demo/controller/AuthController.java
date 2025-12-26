@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.LoginRequest;
 import com.example.demo.model.UserAccount;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.UserAccountService;
@@ -17,14 +16,14 @@ public class AuthController {
     private final UserAccountService userAccountService;
     private final PasswordEncoder passwordEncoder;
 
-    // 🔑 Manually created (NOT a Spring bean – test safe)
+    // JwtTokenProvider is NOT a Spring bean (test-safe)
     private final JwtTokenProvider jwtTokenProvider =
             new JwtTokenProvider(
                     "ChangeThisSecretKeyForJwt123456789012345",
                     3600000
             );
 
-    // ✅ Constructor injection
+    // Constructor injection
     public AuthController(UserAccountService userAccountService,
                           PasswordEncoder passwordEncoder) {
         this.userAccountService = userAccountService;
@@ -37,7 +36,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<UserAccount> register(@RequestBody UserAccount user) {
 
-        // passwordHash temporarily contains plain password
+        // passwordHash temporarily holds plain password
         user.setPasswordHash(
                 passwordEncoder.encode(user.getPasswordHash())
         );
@@ -50,10 +49,10 @@ public class AuthController {
     // LOGIN
     // =========================
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
 
-        String email = request.getEmail();
-        String password = request.getPassword();
+        String email = request.get("email");
+        String password = request.get("password");
 
         UserAccount user = userAccountService.findByEmail(email);
 
