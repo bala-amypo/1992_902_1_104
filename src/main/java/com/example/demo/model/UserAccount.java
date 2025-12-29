@@ -19,12 +19,12 @@ public class UserAccount {
     private String role;
     private Boolean active;
 
-    // ✅ Default constructor
+  
     public UserAccount() {
         this.active = true;
     }
 
-    // ✅ Parameterized constructor
+   
     public UserAccount(String fullName, String email,
                        String passwordHash, String role, Boolean active) {
         this.fullName = fullName;
@@ -34,7 +34,7 @@ public class UserAccount {
         this.active = active;
     }
 
-    // ✅ Getters & Setters
+   
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
